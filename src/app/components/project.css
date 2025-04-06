@@ -1,0 +1,51 @@
+/* src/app/components/Projects.css */
+
+.projects {
+    text-align: center;
+    padding: 40px 0;
+  }
+  
+  .projects h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .project-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  .project-card {
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .project-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .project-card p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .project-card a {
+    color: #00bcd4;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .project-card a:hover {
+    text-decoration: underline;
+  }
+  
