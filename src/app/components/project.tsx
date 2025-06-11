@@ -9,8 +9,8 @@ import {
   SiStripe,
   SiAuth0,
   SiHtml5,
-  SiCss3,
-  SiJavascript,
+  // SiCss3,
+  // SiJavascript,
   SiReact
 } from 'react-icons/si';
 import { motion } from 'framer-motion';
