@@ -21,22 +21,25 @@ const Projects = () => {
       title: 'Nike',
       description:
         'A fully responsive e-commerce site built with Next.js, TypeScript, OAuth authentication, Stripe integration, and Tailwind CSS.',
-      link: 'https://example.com/nike',
-      icons: [SiNextdotjs, SiTypescript, SiTailwindcss, SiStripe, SiAuth0], // passed as components
+      link: 'https://hackathon-ecommmerce-website-g8uy.vercel.app/',
+      link2: 'https://github.com/umeradnan7106/hackathon-ecommmerce-website',
+      icons: [SiHtml5, SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiStripe, SiAuth0], // passed as components
     },
     {
-      title: 'Jadoo',
+      title: 'Foodtuck',
       description:
-        'A pixel-perfect travel website design built for desktop using HTML, CSS, and JavaScript.',
-      link: 'https://example.com/jadoo',
-      icons: [SiHtml5, SiCss3, SiJavascript],
+        'A fully responsive e-commerce site built with Next.js, TypeScript, OAuth authentication, Stripe integration, and Tailwind CSS.',
+      link: 'https://hackathon-weld-theta.vercel.app/',
+      link2: 'https://github.com/armanzkhan/Hackathon',
+      icons: [SiHtml5, SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiStripe, SiAuth0],
     },
     {
-      title: 'Microsoft Store',
+      title: 'Services Website',
       description:
-        'Another pixel-perfect design for desktop only, mimicking Microsoft Store UI using React and CSS.',
-      link: 'https://example.com/microsoft-store',
-      icons: [SiReact, SiCss3],
+        'A fully responsive e-commerce site built with Next.js, TypeScript, OAuth authentication, Stripe integration, and Tailwind CSS.',
+      link: 'https://services-website-orpin.vercel.app/',
+      link2: 'https://github.com/umeradnan7106/Services-website',
+      icons: [SiHtml5, SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiStripe, SiAuth0],
     },
   ];
 
@@ -60,6 +63,7 @@ const Projects = () => {
               title={project.title}
               description={project.description}
               link={project.link}
+              link2={project.link2}
               icons={project.icons}
             />
           ))}

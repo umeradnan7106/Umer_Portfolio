@@ -6,10 +6,11 @@ interface ProjectCardProps {
   title: string;
   description: string;
   link: string;
+  link2: string;
   icons: React.ElementType[]; // array of icon components
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, link, icons }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, link, link2, icons }) => {
   return (
     <div className="bg-gray-900 rounded-2xl p-6 shadow-md flex flex-col justify-between h-full">
       <div>
@@ -21,14 +22,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, link, ico
           ))}
         </div>
       </div>
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block mt-auto text-blue-400 hover:underline"
-      >
-        View Project
-      </a>
+      <div className='flex gap-3'>
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-auto text-blue-400 hover:underline border p-2 rounded"
+        >
+          View Project
+        </a>
+        <a
+          href={link2}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-auto text-blue-400 hover:underline border p-2 rounded"
+        >
+          View Code
+        </a>
+      </div>
     </div>
   );
 };
