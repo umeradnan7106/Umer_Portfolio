@@ -57,7 +57,7 @@ const Footer = () => {
         <div className="flex gap-4 text-xl">
           {[
             { icon: FaGithub, url: 'https://github.com/umeradnan7106' },
-            { icon: FaLinkedin, url: 'https://www.linkedin.com/in/umer-adnan-a1b881291/' },
+            { icon: FaLinkedin, url: 'https://www.linkedin.com/in/umer-adnan-42a361368/' },
             { icon: FaEnvelope, url: 'mailto:umeradnan7106@gmail.com' },
           ].map(({ icon: Icon, url }, i) => (
             <motion.a

@@ -66,7 +66,7 @@ export default function Main() {
             <FaGithub size={28} />
           </a>
           <a
-            href="https://www.linkedin.com/in/umer-adnan-a1b881291/"
+            href="https://www.linkedin.com/in/umer-adnan-42a361368/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-400 transition-all duration-300"
