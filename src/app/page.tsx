@@ -1,29 +1,20 @@
-import Navbar from "./components/navbar";
-import Main from "./components/main";
-import About from "./components/about";
-import Skills from "./components/skills";
-import Projects from "./components/project";
-import Contact from "./components/contact";
-import Footer from "./components/footer";
-import Services from "./components/services";
+import Hero from "@/components/sections/hero";
+import About from "@/components/sections/about";
+import Experience from "@/components/sections/experience";
+import Services from "@/components/sections/services";
+import Work from "@/components/sections/work";
+import Cta from "@/components/sections/cta";
+import { hasResume } from "@/lib/resume";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <div className="min-h-screen bg-gray-800 text-white">
-        <Navbar /> {/* Navbar fixed to the top */}
-        <main className="space-y-24 pt-16">  {/* Adjust padding-top to avoid overlap */}
-          <Main />
-            <About />
-            <Skills />
-          <div className="pt-32">
-            <Services />
-          </div>
-            <Projects />
-            <Contact />
-        </main>
-        <Footer />
-      </div>
+      <Hero hasResume={hasResume()} />
+      <About compact />
+      <Experience />
+      <Work />
+      <Services />
+      <Cta />
     </>
   );
 }

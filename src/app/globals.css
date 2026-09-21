@@ -1,119 +1,217 @@
 @import "tailwindcss";
 
-.skills-container {
-    max-width: 800px;  /* Adjust this value to match the width of the other containers */
-    margin: auto;
-    padding: 40px;
-    background: #2b2d42;
-    color: #f4f7f6;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .skills-heading {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #ff6a00;
-    text-align: center;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-  }
-  
-  .skills {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .skill {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-  }
-  
-  h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #f4f7f6;
-  }
-  
-  .progress-bar {
-    height: 25px;
-    background-color: #444b6e;
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-    border: 1px solid #666;
-    transition: all 0.3s ease;
-  }
-  
-  .progress-bar::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
-    animation: moveGradient 3s linear infinite;
-  }
-  
-  .progress-bar span {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #fff;
-    font-weight: bold;
-    font-size: 1rem;
-    line-height: 25px;
-  }
-  
-  @keyframes moveGradient {
-    0% {
-      background-position: -200% 0;
-    }
-    50% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
-  }
-  
-  .skill:hover .progress-bar {
-    transform: translateY(-5px); /* Lift the progress bar on hover */
-  }
-  
-  .loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-    font-weight: 600;
-    color: #ff6a00;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    animation: loaderAnimation 2s infinite;
-  }
-  
-  @keyframes loaderAnimation {
-    0% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: translate(-50%, -50%) scale(1.2);
-      opacity: 0.7;
-    }
-    100% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
-  }
-  
+/* Class-based dark mode so the toggle can drive it (Tailwind v4 defaults to
+   prefers-color-scheme, which a manual switch cannot override). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   DESIGN TOKENS
+   Light is the base; .dark redefines the same variables so every component
+   only ever references the semantic name.
+   ------------------------------------------------------------------------ */
+:root {
+  --bg: #fbfbf9;
+  --surface: #ffffff;
+  --elevated: #f4f5f2;
+  --line: #e4e4e0;
+  --line-strong: #d3d4ce;
+  --fg: #0b0d0f;
+  --fg-soft: #3d444b;
+  --muted: #5f666e;
+  --accent: #047857;
+  --accent-hover: #065f46;
+  --accent-soft: #ecfdf5;
+  --accent-contrast: #ffffff;
+  --ring: #10b981;
+  --shadow-color: 210 15% 30%;
+
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #08090a;
+  --surface: #101315;
+  --elevated: #171a1d;
+  --line: #23282c;
+  --line-strong: #313840;
+  --fg: #e7eaec;
+  --fg-soft: #c2c8cd;
+  --muted: #939ba2;
+  --accent: #10b981;
+  --accent-hover: #34d399;
+  --accent-soft: #06251b;
+  --accent-contrast: #04140e;
+  --ring: #10b981;
+  --shadow-color: 220 40% 2%;
+
+  color-scheme: dark;
+}
+
+/* Map tokens onto Tailwind utilities: bg-bg, text-fg, border-line, … */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-contrast: var(--accent-contrast);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-font), ui-monospace, SFMono-Regular, monospace;
+
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s ease-out infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   BASE
+   ------------------------------------------------------------------------ */
+* {
+  border-color: var(--line);
+}
+
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  /* keeps anchored sections clear of the fixed header */
+  scroll-padding-top: 6rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbar — subtle, themed */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 999px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* ---------------------------------------------------------------------------
+   UTILITIES
+   ------------------------------------------------------------------------ */
+
+/* Faint grid used behind the hero */
+.bg-grid {
+  background-image: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--line) 70%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--line) 70%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+}
+
+/* Radial fade so the grid dissolves toward the edges */
+.mask-fade {
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 0%,
+    #000 40%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 0%,
+    #000 40%,
+    transparent 100%
+  );
+}
+
+.text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--fg) 0%,
+    var(--fg) 40%,
+    var(--accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Edge fade for the logo marquee */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
